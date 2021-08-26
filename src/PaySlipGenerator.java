@@ -17,7 +17,7 @@ public class PaySlipGenerator {
 		while (!userInput.equals("")) 
 		{
 			String[] splitString = userInput.split(",");
-			employees.add(new Employee(splitString[0], splitString[1], Integer.parseInt(splitString[2]), splitString[4], splitString[3]));
+			employees.add(new Employee(splitString[0], splitString[1], splitString[2], splitString[3], splitString[4]));
 			System.out.print("Enter Next Employee Details: ");
 			userInput = input.nextLine();
 		}
@@ -27,17 +27,7 @@ public class PaySlipGenerator {
 		
 		for (int i = 0; i < employees.size(); i++) 
 		{
-			System.out.println(employees.get(i).Print());
+			System.out.println(employees.get(i).PrintPaySlip());
 		}
-		
-		//For debugging
-		//Employee employee;
-		//String employeeInput2 = "Monica,Tan,60050,9%,01 March – 31 March";
-		//String employeeInput = "Brend,Tulu,120000,10%,01 March – 31 March";
-		//String employeeInput = "Monica,Tan,60050,9%,01 March – 31 March";
-		//String employeeInput = "Brend,Tulu,120000,10%,01 March – 31 March";
-		//String[] splitString = employeeInput.split(",");
-		//employee = new Employee(splitString[0], splitString[1], Integer.parseInt(splitString[2]), splitString[4], splitString[3]);
-		//System.out.print(employee.Print());
 	}
 }

@@ -1,4 +1,3 @@
-
 public class Employee {
 	//User Entered
 	private String firstName;
@@ -9,7 +8,7 @@ public class Employee {
 	private String toDate;
 	
 	//Preset
-	private int paymentPeriod; 
+	private int paymentPeriod = 1; 
 	
 	//Calculated
 	private int grossIncome;
@@ -17,22 +16,21 @@ public class Employee {
 	private int superannuation;
 	private int netIncome;
 	
-	public Employee(String fName, String lName, int aSalary, String pPeriod, String sRate) 
+	public Employee(String fName, String lName, String aSalary, String sRate, String pPeriod) 
 	{
 		firstName = fName;
 		lastName = lName;
-		annualSalary = aSalary;
-		paymentPeriod = 1; //Assumption: Only One month will be given
-		superRate = Double.parseDouble(sRate.replace("%", "")) / 100;
+		annualSalary = Integer.parseInt(aSalary);
+		superRate = Double.parseDouble(sRate.replace("%", "")) / 100; 
 		
 		String[] splitDate = pPeriod.replace('–', '-').split(" - ");
 		fromDate = splitDate[0];
 		toDate = splitDate[1];
 		grossIncome = (int) Math.round(annualSalary / 12.0 * paymentPeriod);
 		
-		if (annualSalary >= 180001) //Assumption: Tax is based on annual Salary
+		if (annualSalary >= 180001) 
 		{
-			incomeTax = (int) Math.round((54232 + ((annualSalary - 180000) * 0.45)) / 12 * paymentPeriod); //Assumption: Divide by 12 to give per month
+			incomeTax = (int) Math.round((54232 + ((annualSalary - 180000) * 0.45)) / 12 * paymentPeriod); 
 		}
 		else if (annualSalary >= 87001) 
 		{
@@ -51,11 +49,11 @@ public class Employee {
 			incomeTax = 0;
 		}
 		
-		netIncome = (int) Math.round(grossIncome - incomeTax); //--------Assumption: Income needs to be divided by 12 to match grossIncome
+		netIncome = (int) Math.round(grossIncome - incomeTax); 
 		superannuation = (int) Math.round(grossIncome * superRate);
 	}
 	
-	public String Print() 
+	public String PrintPaySlip() 
 	{
 		return firstName + " " + lastName + "," + fromDate + " - " + toDate + "," + grossIncome + "," + incomeTax + "," + netIncome + "," + superannuation;
 	}
